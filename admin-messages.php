@@ -13,7 +13,7 @@
 <li><a href="admin-payments.php"><span>Payments</span></a></li>
 <li><a class="active" href="admin-messages.php"> <span>Messages</span></a></li>
 </ul>
-<div class="menu-title">Website</div><ul><li><a href="../new_app/index.html">↗<span>View Website</span></a></li></ul>
+<div class="menu-title">Website</div><ul><li><a href="../new_app/index.html"><span>View Website</span></a></li></ul>
 </aside>
 <main class="main">
 <header class="topbar"><div class="page-title">Contact Messages</div><div class="admin-user">Welcome, <span>Admin</span></div></header>

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+  $conn=mysqli_connect("localhost","root","","user_db");
+?>
 <html>
 <head><title>Car Shop - Customers</title><link rel="stylesheet" href="admin-style.css"></head>
 <body>
@@ -21,13 +24,54 @@
 <div class="panel">
 <div class="panel-head"><h2>Registered <span>Customers</span></h2></div>
 <div class="search-row"><input type="text" placeholder="Search customer..."><button class="btn">Search</button></div>
-<div class="table-wrap"><table>
-<tr><th>ID</th><th>Full Name</th><th>Email</th><th>Mobile</th><th>Gender</th><th>Status</th><th>Action</th></tr>
-<tr><td>001</td><td>Rahul Patel</td><td>rahul@example.com</td><td>9876543210</td><td>Male</td><td><span class="badge green">Active</span></td><td><button class="btn danger">Delete</button></td></tr>
-<tr><td>002</td><td>Priya Shah</td><td>priya@example.com</td><td>9876501234</td><td>Female</td><td><span class="badge green">Active</span></td><td><button class="btn danger">Delete</button></td></tr>
-<tr><td>003</td><td>Amit Joshi</td><td>amit@example.com</td><td>9898989898</td><td>Male</td><td><span class="badge green">Active</span></td><td><button class="btn danger">Delete</button></td></tr>
-<tr><td>004</td><td>Neha Mehta</td><td>neha@example.com</td><td>9812345678</td><td>Female</td><td><span class="badge yellow">Pending</span></td><td><button class="btn danger">Delete</button></td></tr>
-</table></div>
+<div class="table-wrap">
+<form>
+<table>
+<tr>
+ <th>ID</th>
+ <th>Full Name</th>
+ <th>Email</th>
+ <th>Mobile</th>
+ <th>Gender</th>
+ <th>Action</th>
+ </tr>
+ <?php 
+   $rid=1;
+   $q="select * from users";
+   $ans=mysqli_query($conn,$q);
+
+  while($row =mysqli_fetch_assoc($ans)){
+   ?>
+  <tr>
+  <td>
+  <?php echo $rid; $rid++; ?>
+  </td>
+  <td>
+  <?php echo $row['name']; ?>
+  </td>
+  <td>
+  <?php echo $row['email']; ?>
+  </td>
+  <td>
+  <?php echo $row['mno']; ?>
+  </td>
+  <td>
+  <?php echo $row['gender']; ?>
+  </td>
+  <td>
+  <input type='submit' class='btn danger' value='Delete' name='delet<?php echo $row['id'] ?>'>
+  </td>
+  </tr>
+  <?php
+  if(isset($_GET["delet$row[id]"])){
+   header("location:delet.php?did=$row[id]");
+   die;
+   }
+  }
+  ?>
+</table>
+</form>
+</div>
 </div>
 </div>
 </main>
